@@ -125,7 +125,7 @@ public class PassearPeloMapa {
 					System.out.println("A wild Pikachu appears");
 					batalhaComSelvagem(T, P, Selvagem[0]);
 				}
-				if (variavelDoSelvagem>=27 && variavelDoSelvagem<=35 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
+				if (variavelDoSelvagem>=17 && variavelDoSelvagem<=35 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
 					System.out.println("A wild Bulbasauro appears");
 					batalhaComSelvagem(T, P, Selvagem[1]);
 				}
