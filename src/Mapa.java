@@ -62,7 +62,6 @@ public class Mapa {
 	//Pikachu P1 = new Pikachu ();
 	public int selvagemAparece(Treinador T) {
 		if (mapa[T.getPosicaoXatual()][T.getPosicaoYatual()] == 1) {
-			System.out.println("Pokemon selvagem pode aparecer");
 			return gerarSelvagemRandomico();
 		}
 		else return -1;
