@@ -22,49 +22,75 @@ public class PassearPeloMapa {
 	    return i;
 	}
 	
+	public static int gerarMovimentoRandomico() {
+		int max=4;
+	    int min=1;
+	    int diff=max-min;
+	    Random rn = new Random();
+	    int i = rn.nextInt(diff+1);
+	    i+=min;
+	    return i;
+	}
+	
 	
 	public static void batalha(Treinador A, Pokemon PA, Pokemon Selvagem, int i, int j){ // i e j guardam a posicao do pokemon atual
 		int numerodoataque=gerarAtaqueRandomico();
 		int variaveldeacao =gerarAcaoRandomico();
 		//se pokemon esta vivo e treinador nao fugiu e selvagem nao fugiu, ataque DO TREINADOR
 		if (PA.vivoOuMorto() == true && A.getContinuaBatalha()==true){
-			if (variaveldeacao>=1 && variaveldeacao<=30){
+			//System.out.println("A VARIAVEL DE ACAO EHHAHSDHSADHSADHSADHSADHADHSAHDSAHD "+variaveldeacao);
+			
+			if (variaveldeacao>=1 && variaveldeacao<=59){
+				//System.out.println("if 1 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 				System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
 				System.out.println("O treinador irá usar "+PA.imprimeAtaque(numerodoataque));
 				System.out.println();
 				PA.pokemonAtaca(numerodoataque, Selvagem); 
-			//dps de cada ataque devemos checar se o pokemon que recebeu o ataque nao morreu
-				if (Selvagem.vivoOuMorto()==false)
+				//dps de cada ataque devemos checar se o pokemon que recebeu o ataque nao morreu
+				if (Selvagem.vivoOuMorto()==false) {
+					//System.out.println("if 2 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 					System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" morreu!");			
-			if (variaveldeacao>=31 && variaveldeacao<=50 )
-				A.setContinuaBatalha(false); //O TREINADOR FOGE DA BATALHA
+				}
+			}
 				
-			if (variaveldeacao>=51 && variaveldeacao<=100) {
+				
+			if (variaveldeacao>=60 && variaveldeacao<=90 ) {
+				//System.out.println("if 3 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
+				A.setContinuaBatalha(false); //O TREINADOR FOGE DA BATALHA
+			}
+			
+				
+			if (variaveldeacao>=91 && variaveldeacao<=100) {
 				if (A.usaritem(PA)==false) {
+					//System.out.println("if 4 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 					System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
 					System.out.println("O treinador irá usar "+PA.imprimeAtaque(numerodoataque));
 					System.out.println();
 					PA.pokemonAtaca(numerodoataque, Selvagem); 
 					if (Selvagem.vivoOuMorto()==false)
-						System.out.println("O treinador "+A.getNomeTreinador()+" venceu a batalha!!");				}
+						System.out.println("O treinador "+A.getNomeTreinador()+" venceu a batalha!!");	
+				}
 				
 			}
 			
 		}
 		System.out.println();
-		variaveldeacao =gerarAcaoRandomico();
 		numerodoataque=gerarAtaqueRandomico();
 		//se pokemon esta vivo e treinador nao fugiu e selvagem nao fugiu, ataque DO SELVAGEM
-		if (Selvagem.vivoOuMorto() == true /*&& A.getContinuaBatalha()==true*/){
+		if (Selvagem.vivoOuMorto() == true && A.getContinuaBatalha()==true){
 			if(variaveldeacao>=1 && variaveldeacao<=89){
+				//System.out.println("if 5 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 				System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" irá atacar!");
 				System.out.println("O pokemon irá usar "+Selvagem.imprimeAtaque(numerodoataque));
 				System.out.println();
 				Selvagem.pokemonAtaca(numerodoataque, PA);
-				if (PA.vivoOuMorto()==false)
+				if (PA.vivoOuMorto()==false) {
+					//System.out.println("if 6 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 					System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" venceu a batalha!!");
+				}
 			}
-			if (variaveldeacao>=90 && variaveldeacao<=100)
+			if (variaveldeacao>=90 && variaveldeacao<=100) {
+				//System.out.println("if 7 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 				Selvagem.setContinuaBatalha(false); //O POKEMON SELVAGEM FOGE DA BATALHA
 			}
 		}
@@ -73,11 +99,13 @@ public class PassearPeloMapa {
 		if (A.getContinuaBatalha()==false) {
 			System.out.println("O treinador "+A.getNomeTreinador()+" fugiu!");
 			System.out.println("O treinador "+Selvagem.getNomePokemon()+" venceu a batalha!!");
+			System.out.println();
 		}
 		//POKEMON SELVAGEM FOGE
 		if (Selvagem.getContinuaBatalha()==false) {
 			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" fugiu!");
 			System.out.println("O treinador "+A.getNomeTreinador()+" venceu a batalha!!");
+			System.out.println();
 		}
 		
 	}
@@ -94,6 +122,7 @@ public class PassearPeloMapa {
 		Selvagem.SetHP(Selvagem.getHPmax()-Selvagem.getHPPokemon()); //Após cada batalha com o treinador, o pokemon selvagem fica com a vida cheia
 																	// para poder combater com outros treinadores e estar com a vida maxima
 		Selvagem.setContinuaBatalha(true);
+		T.setContinuaBatalha(true);
 	}
 	
 	public static void andar(Treinador T, Mapa mp, int acao, Pokemon Selvagem[], Pokemon P) {
@@ -146,57 +175,34 @@ public class PassearPeloMapa {
 	public static void main(String[] args) {
 		Mapa mp1 = new Mapa();
 		Ash T1 = new Ash();
-		Pokemon[] Selvagem = new Pokemon[10];
-		Pokemon[] PokeDoTreinador = new Pokemon[10];   // Cada treinador só pode ter um (apenas um) pokemón para batalhar contra selvagens
+		Pokemon[] Selvagem = new Pokemon[6];
+		Pokemon[] PokeDoTreinador = new Pokemon[6];   // Cada treinador só pode ter um (apenas um) pokemón para batalhar contra selvagens
 		Selvagem[0] = new Pikachu();
 		Selvagem[1] = new Bulbasaur();
 		Selvagem[2] = new Charmander();
+		Selvagem[3] = new Pikachu();
+		Selvagem[4] = new Bulbasaur();
+		Selvagem[5] = new Charmander();
 		PokeDoTreinador[0]= new Pikachu();
 		PokeDoTreinador[1]= new Charmander();
+		PokeDoTreinador[2]= new Pikachu();
+		PokeDoTreinador[3]= new Charmander();
+		PokeDoTreinador[4]= new Charmander();
+		PokeDoTreinador[5]= new Pikachu();
 		
+		System.out.println("O treinador "+T1.getNomeTreinador()+" irá começar a andar no mapa!!!");
+		mp1.imprimemapa(T1);
+		System.out.println("-----------------------------------------------------------");
+		int i=0, movimentoRandomico=0;
+		while (i<6) { /* 6 é o numero maximo de pokemons do treinador*/
+			movimentoRandomico=gerarMovimentoRandomico();
+			andar (T1, mp1, movimentoRandomico, Selvagem, PokeDoTreinador[i]);
+			mp1.imprimemapa(T1);
+			System.out.println("-----------------------------------------------------------");
+			if (PokeDoTreinador[i].getHPPokemon()<=0)
+				i++;
+		}
 		
-		mp1.imprimemapa(T1);
-		
-		
-		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-
-		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
-		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[1]);
-		mp1.imprimemapa(T1);
 
 
 	}

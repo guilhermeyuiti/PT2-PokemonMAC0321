@@ -13,14 +13,14 @@ public class Ash extends Treinador {
 		}
 		//se o pokemon esta vivo e seu HP excedera o maximo NAO pode usar item
 		else if (P.vivoOuMorto() == true && P.getHPPokemon() + 25 > P.getHPmax()){
-			System.out.println("Ash tentou usar um item de cura");
-			System.out.println("Ash não pode usar um item de cura pois a vida do pokemón já está alta!");
+			//System.out.println("Ash tentou usar um item de cura");
+			//System.out.println("Ash não pode usar um item de cura pois a vida do pokemón já está alta!");
 			return false;
 		}
 		//se o pokemon esta morto NAO pode usar item
 		else if (P.vivoOuMorto() != true){
-			System.out.println("Ash tentou usar um item de cura");
-			System.out.println("Ash não pode usar um item de cura pois o pokemón está morto!");
+			//System.out.println("Ash tentou usar um item de cura");
+			//System.out.println("Ash não pode usar um item de cura pois o pokemón está morto!");
 			return false;
 		}
 		return true;
