@@ -15,8 +15,8 @@ abstract class Treinador {
 		return continuaBatalha;
 	}
 	
-	public boolean setContinuaBatalha() {
-		return continuaBatalha=false;
+	public boolean setContinuaBatalha(boolean a) {
+		return continuaBatalha=a;
 	}
 	
 	abstract boolean usaritem(Pokemon P);

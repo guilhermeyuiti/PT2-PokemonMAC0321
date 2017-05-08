@@ -33,8 +33,8 @@ abstract class Pokemon {
 			return continuaBatalha;
 		}
 		
-		public boolean setContinuaBatalha() {
-			return continuaBatalha=false;
+		public boolean setContinuaBatalha(boolean a) {
+			return continuaBatalha=a;
 		}
 		
 		public String getNomePokemon(){
