@@ -75,6 +75,7 @@ public class PassearPeloMapa {
 			
 		}
 		System.out.println();
+		variaveldeacao =gerarAcaoRandomico();
 		numerodoataque=gerarAtaqueRandomico();
 		//se pokemon esta vivo e treinador nao fugiu e selvagem nao fugiu, ataque DO SELVAGEM
 		if (Selvagem.vivoOuMorto() == true && A.getContinuaBatalha()==true){
