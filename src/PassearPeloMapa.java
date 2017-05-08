@@ -46,7 +46,7 @@ public class PassearPeloMapa {
 					System.out.println();
 					PA.pokemonAtaca(numerodoataque, Selvagem); 
 					if (Selvagem.vivoOuMorto()==false)
-						System.out.println("O pokemon selvagem"+Selvagem.getNomePokemon()+" morreu!");				}
+						System.out.println("O treinador "+A.getNomeTreinador()+" venceu a batalha!!");				}
 				
 			}
 			
@@ -62,7 +62,7 @@ public class PassearPeloMapa {
 				System.out.println();
 				Selvagem.pokemonAtaca(numerodoataque, PA);
 				if (PA.vivoOuMorto()==false)
-					System.out.println("O pokemon "+PA.getNomePokemon()+"do treinador "+A.getNomeTreinador()+" morreu!");
+					System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" venceu a batalha!!");
 			}
 			if (variaveldeacao==99 || variaveldeacao==100)
 				Selvagem.setContinuaBatalha(); //O POKEMON SELVAGEM FOGE DA BATALHA
@@ -91,6 +91,30 @@ public class PassearPeloMapa {
 		batalha(T, P, Selvagem, 0, 0);
 		batalha(T, P, Selvagem, 0, 0);
 		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+		batalha(T, P, Selvagem, 0, 0);
+
 
 	}
 	
@@ -99,24 +123,17 @@ public class PassearPeloMapa {
 		boolean tCima=false, tBaixo=false, tEsquerda=false, tDireita=false;
 		if (acao==1) {  //CIMA 
 			tCima=T.cima();
-			if (tCima==true)
-				System.out.println(variavelDoSelvagem); //REMOVER O PRINT DEPOIS
 		}
 		
 		if (acao==2) {  //BAIXO
 			tBaixo=T.baixo();
-			if (tBaixo==true)
-				System.out.println(variavelDoSelvagem);
+
 		}
 		if (acao==3) {  //ESQUERDA 
 			tEsquerda=T.esquerda();
-			if (tEsquerda==true)
-				System.out.println(variavelDoSelvagem);
 		}
 		if (acao==4) {  //DIREITA
 			tDireita=T.direita();
-			if (tDireita==true)
-				System.out.println(variavelDoSelvagem);
 		}
 		
 		if (acao!=1 && acao!=2 && acao!=3 && acao!=4) {  //ACAO INVALIDA
@@ -126,15 +143,15 @@ public class PassearPeloMapa {
 		
 		
 		if ((acao==1 && tCima==true) || (acao==2 && tBaixo==true) || (acao==3 && tEsquerda==true) || (acao==4 && tDireita==true)) {
-			if (variavelDoSelvagem>=0 && variavelDoSelvagem<=6) {   // MUDAR OS INTERVALOS PARA APARECER MENOS POKEMONS
+			if (variavelDoSelvagem>=0 && variavelDoSelvagem<=6 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {   // MUDAR OS INTERVALOS PARA APARECER MENOS POKEMONS
 				System.out.println("A wild Pikachu appears");
 				batalhaComSelvagem(T, P, Selvagem[0]);
 			}
-			if (variavelDoSelvagem>=7 && variavelDoSelvagem<=25) {
+			if (variavelDoSelvagem>=7 && variavelDoSelvagem<=25 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
 				System.out.println("A wild Bulbasauro appears");
 				batalhaComSelvagem(T, P, Selvagem[1]);
 			}
-			if (variavelDoSelvagem>=55 && variavelDoSelvagem<=67) {
+			if (variavelDoSelvagem>=55 && variavelDoSelvagem<=67 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
 				System.out.println("A wild Charmander appears");
 				batalhaComSelvagem(T, P, Selvagem[2]);
 			}
@@ -170,6 +187,19 @@ public class PassearPeloMapa {
 		mp1.imprimemapa(T1);
 		andar(T1, mp1, 4, Selvagem, PokeDoTreinador[0]);
 		mp1.imprimemapa(T1);
+		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+
 
 	}
 }
