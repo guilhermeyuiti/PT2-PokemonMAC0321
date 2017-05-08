@@ -15,8 +15,11 @@ public class Mapa {
 			{gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa()},
             };
 
+	public int getMapa(int x, int y){
+		return mapa[x][y];
+	}
 	
-	public static int gerarMapa() {
+	public int gerarMapa() {
 		int max=1;
 	    int min=0;
 	    int diff=max-min;
@@ -44,6 +47,25 @@ public class Mapa {
 		System.out.println();
 		System.out.println();
 		System.out.println();
+	}
+	
+	public int gerarSelvagemRandomico() {
+		int max=100;
+	    int min=0;
+	    int diff=max-min;
+	    Random rn = new Random();
+	    int i = rn.nextInt(diff+1);
+	    i+=min;
+	    return i;
+	}
+	
+	//Pikachu P1 = new Pikachu ();
+	public int selvagemAparece(Treinador T) {
+		if (mapa[T.getPosicaoXatual()][T.getPosicaoYatual()] == 1) {
+			System.out.println("Pokemon selvagem pode aparecer");
+			return gerarSelvagemRandomico();
+		}
+		else return -1;
 	}
 	
 }

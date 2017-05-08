@@ -27,44 +27,53 @@ abstract class Treinador {
 		return posicaoYatual;
 	}
 	
-	public void direita(Mapa mp){
+	public boolean direita(){
 		if(posicaoYatual<9) {
 			posicaoYatual++;
+			System.out.println(treinador+" andou para a direita!");
+			return true;
 		}
 		else {
-			System.out.println("Você não pode andar para a direita!");
+			System.out.println(treinador+" não pode andar para a direita!");
+			return false;
 		}
-		//mp.imprimemapa();
 	}
 	
-	public void esquerda(Mapa mp){
+	public boolean esquerda(){
 		if(posicaoYatual>0) {
 			posicaoYatual--;
+			System.out.println(treinador+" andou para a esquerda!");
+			return true;
 		}
 		else {
-			System.out.println("Você não pode andar para a esquerda!");
+			System.out.println(treinador+" não pode andar para a esquerda!");
+			return false;
 		}
-		//mp.imprimemapa();
 	}
 	
-	public void cima(Mapa mp){
+	public boolean cima(){
 		if(posicaoXatual>0) {
 			posicaoXatual--;
+			System.out.println(treinador+" andou para cima!");
+			return true;
 		}
 		else {
-			System.out.println("Você não pode andar para cima!");
+			System.out.println(treinador+" não pode andar para cima!");
+			return false;
 		}
-		//mp.imprimemapa();
+
 	}
 	
-	public void baixo(Mapa mp){
+	public boolean baixo(){
 		if(posicaoXatual<9) {
 			posicaoXatual++;
+			System.out.println(treinador+" andou para baixo!");
+			return true;
 		}
 		else {
-			System.out.println("Você não pode andar para baixo!");
+			System.out.println(treinador+" não pode andar para baixo!");
+			return false;
 		}
-		//mp.imprimemapa();
 	}
 
 }
