@@ -3,7 +3,7 @@ import java.util.Random;
 public class Mapa {
 	
 	static int posicaoXatual=0, posicaoYatual=0;
-	private static int mapa[][]= {
+	private int mapa[][]= {
 			{gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa()},
 			{gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa()},
 			{gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa()},
@@ -27,7 +27,7 @@ public class Mapa {
 	    return i;
 	}
 	
-	public static void imprimemapa() {
+	public void imprimemapa() {
 		int i;
 		int j;
 		for ( i=0; i<10; i++) {
@@ -47,7 +47,7 @@ public class Mapa {
 		System.out.println();
 	}
 
-	public static void direita(){
+	public void direita(){
 		if(posicaoYatual<9) {
 			posicaoYatual++;
 		}
@@ -57,7 +57,7 @@ public class Mapa {
 		imprimemapa();
 	}
 	
-	public static void esquerda(){
+	public void esquerda(){
 		if(posicaoYatual>0) {
 			posicaoYatual--;
 		}
@@ -67,7 +67,7 @@ public class Mapa {
 		imprimemapa();
 	}
 	
-	public static void cima(){
+	public void cima(){
 		if(posicaoXatual>0) {
 			posicaoXatual--;
 		}
@@ -77,7 +77,7 @@ public class Mapa {
 		imprimemapa();
 	}
 	
-	public static void baixo(){
+	public void baixo(){
 		if(posicaoXatual<9) {
 			posicaoXatual++;
 		}
@@ -88,11 +88,5 @@ public class Mapa {
 	}
 	
 	
-	public static void main(String[] args) {
-		imprimemapa();
-	
-
-	
-	}
 	
 }
