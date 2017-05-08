@@ -40,7 +40,7 @@ abstract class Treinador {
 	//METODOS PARA ANDAR
 	public boolean direita(){
 		if(posicaoYatual<9) {
-			posicaoYatual++;
+			++posicaoYatual;
 			System.out.println(treinador+" andou para a direita!");
 			return true;
 		}
@@ -52,7 +52,7 @@ abstract class Treinador {
 	
 	public boolean esquerda(){
 		if(posicaoYatual>0) {
-			posicaoYatual--;
+			--posicaoYatual;
 			System.out.println(treinador+" andou para a esquerda!");
 			return true;
 		}
@@ -64,7 +64,7 @@ abstract class Treinador {
 	
 	public boolean cima(){
 		if(posicaoXatual>0) {
-			posicaoXatual--;
+			--posicaoXatual;
 			System.out.println(treinador+" andou para cima!");
 			return true;
 		}
@@ -77,7 +77,7 @@ abstract class Treinador {
 	
 	public boolean baixo(){
 		if(posicaoXatual<9) {
-			posicaoXatual++;
+			++posicaoXatual;
 			System.out.println(treinador+" andou para baixo!");
 			return true;
 		}
