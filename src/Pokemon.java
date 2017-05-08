@@ -12,6 +12,7 @@ abstract class Pokemon {
 		private String tipo;
 		//guardando o maximo de HP do pokemon
 		private int HPmax;
+		private boolean continuaBatalha=true;
 		//construtor
 		Pokemon(String nome, int HP, String tipo, String ataque[], int dano[]){
 			this.nome = nome;
@@ -27,6 +28,15 @@ abstract class Pokemon {
 			this.dano[2] = dano[2];
 			this.dano[3] = dano[3];
 		}
+		
+		public boolean getContinuaBatalha() {
+			return continuaBatalha;
+		}
+		
+		public boolean setContinuaBatalha() {
+			return continuaBatalha=false;
+		}
+		
 		public String getNomePokemon(){
 			return nome;
 		}

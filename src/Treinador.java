@@ -2,7 +2,7 @@
 abstract class Treinador {
 	private String pokemon;  //nome do pokemon do treinador
 	private String treinador;  //nome do treinador
-	//private boolean continuaBatalha=true;
+	private boolean continuaBatalha=true;
 	private int posicaoYatual, posicaoXatual;
 	public Treinador (String treinador, String pokemon, int X, int Y) {
 		this.treinador=treinador;
@@ -10,6 +10,16 @@ abstract class Treinador {
 		posicaoXatual=X;
 		posicaoYatual=Y;
 	}
+	
+	public boolean getContinuaBatalha() {
+		return continuaBatalha;
+	}
+	
+	public boolean setContinuaBatalha() {
+		return continuaBatalha=false;
+	}
+	
+	abstract boolean usaritem(Pokemon P);
 	
 	public String getNomeTreinador() {
 		return treinador;
@@ -27,6 +37,7 @@ abstract class Treinador {
 		return posicaoYatual;
 	}
 	
+	//METODOS PARA ANDAR
 	public boolean direita(){
 		if(posicaoYatual<9) {
 			posicaoYatual++;
