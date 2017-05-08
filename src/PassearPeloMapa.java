@@ -36,10 +36,10 @@ public class PassearPeloMapa {
 			//dps de cada ataque devemos checar se o pokemon que recebeu o ataque nao morreu
 				if (Selvagem.vivoOuMorto()==false)
 					System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" morreu!");			
-			if (variaveldeacao==60 || variaveldeacao==61 )
+			if (variaveldeacao==60 || variaveldeacao==89 )
 				A.setContinuaBatalha(); //O TREINADOR FOGE DA BATALHA
 				
-			if (variaveldeacao>=62 && variaveldeacao<=100) {
+			if (variaveldeacao>=90 && variaveldeacao<=100) {
 				if (A.usaritem(PA)==false) {
 					System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
 					System.out.println("O treinador irá usar "+PA.imprimeAtaque(numerodoataque));
@@ -88,74 +88,57 @@ public class PassearPeloMapa {
 	public static void batalhaComSelvagem(Treinador T, Pokemon P, Pokemon Selvagem) {
 		System.out.println("O pokemon de "+T.getNomeTreinador()+ " é "+P.getNomePokemon() +" e seu HP é "+P.getHPPokemon()+ "/"+P.getHPmax());
 		System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" tem "+Selvagem.getHPPokemon()+"/"+Selvagem.getHPmax()+" de HP");
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-		batalha(T, P, Selvagem, 0, 0);
-
-
+		while (T.getContinuaBatalha()==true && Selvagem.getContinuaBatalha()==true && P.getHPPokemon()>0 && Selvagem.getHPPokemon()>0) {
+			batalha(T, P, Selvagem, 0, 0);
+		}
+		Selvagem.SetHP(Selvagem.getHPmax()-Selvagem.getHPPokemon()); //Após cada batalha com o treinador, o pokemon selvagem fica com a vida cheia
+																	// para poder combater com outros treinadores e estar com a vida maxima
 	}
 	
 	public static void andar(Treinador T, Mapa mp, int acao, Pokemon Selvagem[], Pokemon P) {
 		int variavelDoSelvagem = mp.selvagemAparece(T);
 		boolean tCima=false, tBaixo=false, tEsquerda=false, tDireita=false;
-		if (acao==1) {  //CIMA 
-			tCima=T.cima();
-		}
-		
-		if (acao==2) {  //BAIXO
-			tBaixo=T.baixo();
+		if (P.getHPPokemon()>0) {
+			if (acao==1) {  //CIMA 
+				tCima=T.cima();
+			}
+			
+			if (acao==2) {  //BAIXO
+				tBaixo=T.baixo();
 
-		}
-		if (acao==3) {  //ESQUERDA 
-			tEsquerda=T.esquerda();
-		}
-		if (acao==4) {  //DIREITA
-			tDireita=T.direita();
-		}
-		
-		if (acao!=1 && acao!=2 && acao!=3 && acao!=4) {  //ACAO INVALIDA
-			System.out.println("Essa ação não é valida!");
-		}
-		
-		
-		
-		if ((acao==1 && tCima==true) || (acao==2 && tBaixo==true) || (acao==3 && tEsquerda==true) || (acao==4 && tDireita==true)) {
-			if (variavelDoSelvagem>=0 && variavelDoSelvagem<=6 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {   // MUDAR OS INTERVALOS PARA APARECER MENOS POKEMONS
-				System.out.println("A wild Pikachu appears");
-				batalhaComSelvagem(T, P, Selvagem[0]);
 			}
-			if (variavelDoSelvagem>=7 && variavelDoSelvagem<=25 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
-				System.out.println("A wild Bulbasauro appears");
-				batalhaComSelvagem(T, P, Selvagem[1]);
+			if (acao==3) {  //ESQUERDA 
+				tEsquerda=T.esquerda();
 			}
-			if (variavelDoSelvagem>=55 && variavelDoSelvagem<=67 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
-				System.out.println("A wild Charmander appears");
-				batalhaComSelvagem(T, P, Selvagem[2]);
+			if (acao==4) {  //DIREITA
+				tDireita=T.direita();
+			}
+			
+			if (acao!=1 && acao!=2 && acao!=3 && acao!=4) {  //ACAO INVALIDA
+				System.out.println("Essa ação não é valida!");
+			}
+			
+			
+			
+			if ((acao==1 && tCima==true) || (acao==2 && tBaixo==true) || (acao==3 && tEsquerda==true) || (acao==4 && tDireita==true)) {
+				if (variavelDoSelvagem>=0 && variavelDoSelvagem<=16 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {   // MUDAR OS INTERVALOS PARA APARECER MENOS POKEMONS
+					System.out.println("A wild Pikachu appears");
+					batalhaComSelvagem(T, P, Selvagem[0]);
+				}
+				if (variavelDoSelvagem>=27 && variavelDoSelvagem<=35 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
+					System.out.println("A wild Bulbasauro appears");
+					batalhaComSelvagem(T, P, Selvagem[1]);
+				}
+				if (variavelDoSelvagem>=55 && variavelDoSelvagem<=67 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {
+					System.out.println("A wild Charmander appears");
+					batalhaComSelvagem(T, P, Selvagem[2]);
+				}
 			}
 		}
+		else {
+			System.out.println("O treinador "+T.getNomeTreinador()+" deve escolher outro pokemón, pois "+P.getNomePokemon()+" está sem HP!");
+		}
+		
 	}
 	
 	
@@ -196,6 +179,18 @@ public class PassearPeloMapa {
 		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
 		mp1.imprimemapa(T1);
 		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[0]);
+		mp1.imprimemapa(T1);
+		andar(T1, mp1, 2, Selvagem, PokeDoTreinador[0]);
 		mp1.imprimemapa(T1);
 		andar(T1, mp1, 3, Selvagem, PokeDoTreinador[0]);
 		mp1.imprimemapa(T1);
