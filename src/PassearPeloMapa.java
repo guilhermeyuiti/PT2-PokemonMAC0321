@@ -70,7 +70,7 @@ public class PassearPeloMapa {
 				}
 				
 			}
-			
+			A.capturaPokemon(Selvagem);
 		}
 		System.out.println();
 		variaveldeacao =gerarAcaoRandomico();  //variaveldeacao recebe outro número para definir ação diferente da anterior
