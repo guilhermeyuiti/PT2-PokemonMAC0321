@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class PassearPeloMapa {
-	
+
 	/*criou-se metodos para gerar numeros randomicos para que a selecao de movimentos e acoes nao fosse fixa e houvesse uma probabilidade de 
 	ocorrerem */
 	public static int gerarAtaqueRandomico() {
@@ -14,7 +14,7 @@ public class PassearPeloMapa {
 	    return i;
 	}
 	
-	public static int gerarAcaoRandomico() {
+	public static int gerarAcaoRandomico() { //gera número aleatório entre 1 e 100 para definir o que cada treinador ou pokemon selvagem faz
 		int max=100;
 	    int min=1;
 	    int diff=max-min;
@@ -24,7 +24,7 @@ public class PassearPeloMapa {
 	    return i;
 	}
 	
-	public static int gerarMovimentoRandomico() {
+	public static int gerarMovimentoRandomico() { //gera numero aleatorio entre 1 e 4 para definir qual o movimento do treinador (cima, baixo, esquerda ou direita)
 		int max=4;
 	    int min=1;
 	    int diff=max-min;
@@ -79,35 +79,32 @@ public class PassearPeloMapa {
 			
 		}
 		System.out.println();
-		variaveldeacao =gerarAcaoRandomico();
-		numerodoataque=gerarAtaqueRandomico();
+		variaveldeacao =gerarAcaoRandomico();  //variaveldeacao recebe outro número para definir ação diferente da anterior
+		numerodoataque=gerarAtaqueRandomico();  //numerodoataque recebe outro número para definir ataque diferente do anterior
 		//se pokemon esta vivo e treinador nao fugiu e selvagem nao fugiu, ataque DO SELVAGEM
 		if (Selvagem.vivoOuMorto() == true && A.getContinuaBatalha()==true){
 			if(variaveldeacao>=1 && variaveldeacao<=89){
-				//System.out.println("if 5 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 				System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" irá atacar!");
 				System.out.println("O pokemon irá usar "+Selvagem.imprimeAtaque(numerodoataque));
 				System.out.println();
 				Selvagem.pokemonAtaca(numerodoataque, PA);
 				if (PA.vivoOuMorto()==false) {
-					//System.out.println("if 6 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 					System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" venceu a batalha!!");
 				}
 			}
 			if (variaveldeacao>=90 && variaveldeacao<=100) {
-				//System.out.println("if 7 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 				Selvagem.setContinuaBatalha(false); //O POKEMON SELVAGEM FOGE DA BATALHA
 			}
 		}
 		System.out.println();
 		
-		if (A.getContinuaBatalha()==false) {
+		if (A.getContinuaBatalha()==false) {  //treinador foge e pokemón selvagem vence a batalha
 			System.out.println("O treinador "+A.getNomeTreinador()+" fugiu!");
 			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" venceu a batalha!!");
 			System.out.println();
 		}
 		//POKEMON SELVAGEM FOGE
-		if (Selvagem.getContinuaBatalha()==false) {
+		if (Selvagem.getContinuaBatalha()==false) { //pokemón selvagem foge e treinador vence a batalha
 			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" fugiu!");
 			System.out.println("O treinador "+A.getNomeTreinador()+" venceu a batalha!!");
 			System.out.println();
@@ -116,27 +113,24 @@ public class PassearPeloMapa {
 	}
 	
 
-	
-	
-	public static void batalhaComSelvagem(Treinador T, Pokemon P, Pokemon Selvagem) {
+	public static void batalhaComSelvagem(Treinador T, Pokemon P, Pokemon Selvagem) { //metodo chamado caso o treinador encontre um pokemón selvagem
 		System.out.println("O pokemon de "+T.getNomeTreinador()+ " é "+P.getNomePokemon() +" e seu HP é "+P.getHPPokemon()+ "/"+P.getHPmax());
 		System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" tem "+Selvagem.getHPPokemon()+"/"+Selvagem.getHPmax()+" de HP");
 		while (T.getContinuaBatalha()==true && Selvagem.getContinuaBatalha()==true && P.getHPPokemon()>0 && Selvagem.getHPPokemon()>0) {
 			batalha(T, P, Selvagem, 0, 0);
 		}
-		Selvagem.SetHP(Selvagem.getHPmax()-Selvagem.getHPPokemon()); //Após cada batalha com o treinador, o pokemon selvagem fica com a vida cheia
-																	// para poder combater com outros treinadores e estar com a vida maxima
+		Selvagem.SetHP(Selvagem.getHPmax()-Selvagem.getHPPokemon()); //Após cada batalha com o treinador, o pokemon selvagem fica com a vida cheia para poder combater com outros treinadores e estar com a vida máxima
 		Selvagem.setContinuaBatalha(true);
 		T.setContinuaBatalha(true);
 	}
 	
-	public static void andar(Treinador T, Mapa mp, int acao, Pokemon Selvagem[], Pokemon P) {
+	public static void andar(Treinador T, Mapa mp, int acao, Pokemon Selvagem[], Pokemon P) {  //muda a posicao do treinador no mapa (caso seja possível) com base nas ações solicitadas
 		int variavelDoSelvagem = mp.selvagemAparece(T);
 		boolean tCima=false, tBaixo=false, tEsquerda=false, tDireita=false;
 		//so pode escolher um pokemon para batalhar se ele tem HP
 		if (P.getHPPokemon()>0) {
 			
-			// cada numero foi associado a uma direcao e assim chama-se os metodos que foram definidos na classe treinador
+			// cada número foi associado a uma direção e assim chama-se os métodos que foram definidos na classe treinador
 			if (acao==1) {  //CIMA 
 				tCima=T.cima();
 			}
@@ -181,7 +175,7 @@ public class PassearPeloMapa {
 		
 	}
 	
-	public static void batalha (Treinador T, Mapa mp, Pokemon Selvagem[], Pokemon PokeDoTreinador[]) {
+	public static void batalha (Treinador T, Mapa mp, Pokemon Selvagem[], Pokemon PokeDoTreinador[]) { //inicia a batalha/movimentos do treinador
 		int i=0, movimentoRandomico=0;
 		System.out.println("O treinador "+T.getNomeTreinador()+" irá começar a andar no mapa!!!");
 		mp.imprimemapa(T);
@@ -195,16 +189,17 @@ public class PassearPeloMapa {
 				i++; //o contador aumenta com a morte do pokemon
 		}
 	}
+	
 	public static void main(String[] args) {
 		//como utilizou-se randomico na geracao do mapa, os objetos mapas serao diferentes, assim mp1 != mp2 
 		Mapa mp1 = new Mapa();
 		Mapa mp2 = new Mapa();
 		Ash T1 = new Ash();
 		Ash T2 = new Ash();
-		Pokemon[] Selvagem = new Pokemon[6];
-		Pokemon[] PokeDoTreinador = new Pokemon[6];   // Cada treinador só pode ter um (apenas um) pokemón para batalhar contra selvagens
-		Pokemon[] PokeDoTreinador2 = new Pokemon[6];   // Cada treinador só pode ter um (apenas um) pokemón para batalhar contra selvagens
-		Selvagem[0] = new Pikachu();
+		Pokemon[] Selvagem = new Pokemon[6]; //pokemóns Selvagens que podem aparecer no mapa
+		Pokemon[] PokeDoTreinador = new Pokemon[6];   // Cada treinador pode ter ate 6 pokemóns
+		Pokemon[] PokeDoTreinador2 = new Pokemon[6];  
+		Selvagem[0] = new Pikachu();   
 		Selvagem[1] = new Bulbasaur();
 		Selvagem[2] = new Charmander();
 		Selvagem[3] = new Pikachu();
