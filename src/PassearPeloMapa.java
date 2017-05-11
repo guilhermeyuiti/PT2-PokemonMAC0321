@@ -181,13 +181,29 @@ public class PassearPeloMapa {
 		
 	}
 	
-	
+	public static void batalha (Treinador T, Mapa mp, Pokemon Selvagem[], Pokemon PokeDoTreinador[]) {
+		int i=0, movimentoRandomico=0;
+		System.out.println("O treinador "+T.getNomeTreinador()+" irá começar a andar no mapa!!!");
+		mp.imprimemapa(T);
+		System.out.println("-----------------------------------------------------------");
+		while (i<6) { /* 6 é o numero maximo de pokemons do treinador*/
+			movimentoRandomico=gerarMovimentoRandomico();
+			andar (T, mp, movimentoRandomico, Selvagem, PokeDoTreinador[i]);
+			mp.imprimemapa(T);
+			System.out.println("-----------------------------------------------------------");
+			if (PokeDoTreinador[i].getHPPokemon()<=0)
+				i++; //o contador aumenta com a morte do pokemon
+		}
+	}
 	public static void main(String[] args) {
 		//como utilizou-se randomico na geracao do mapa, os objetos mapas serao diferentes, assim mp1 != mp2 
 		Mapa mp1 = new Mapa();
+		Mapa mp2 = new Mapa();
 		Ash T1 = new Ash();
+		Ash T2 = new Ash();
 		Pokemon[] Selvagem = new Pokemon[6];
 		Pokemon[] PokeDoTreinador = new Pokemon[6];   // Cada treinador só pode ter um (apenas um) pokemón para batalhar contra selvagens
+		Pokemon[] PokeDoTreinador2 = new Pokemon[6];   // Cada treinador só pode ter um (apenas um) pokemón para batalhar contra selvagens
 		Selvagem[0] = new Pikachu();
 		Selvagem[1] = new Bulbasaur();
 		Selvagem[2] = new Charmander();
@@ -200,19 +216,19 @@ public class PassearPeloMapa {
 		PokeDoTreinador[3]= new Charmander();
 		PokeDoTreinador[4]= new Charmander();
 		PokeDoTreinador[5]= new Pikachu();
+		PokeDoTreinador2[0]= new Pikachu();
+		PokeDoTreinador2[1]= new Charmander();
+		PokeDoTreinador2[2]= new Pikachu();
+		PokeDoTreinador2[3]= new Charmander();
+		PokeDoTreinador2[4]= new Charmander();
+		PokeDoTreinador2[5]= new Pikachu();
 		
-		System.out.println("O treinador "+T1.getNomeTreinador()+" irá começar a andar no mapa!!!");
-		mp1.imprimemapa(T1);
-		System.out.println("-----------------------------------------------------------");
-		int i=0, movimentoRandomico=0;
-		while (i<6) { /* 6 é o numero maximo de pokemons do treinador*/
-			movimentoRandomico=gerarMovimentoRandomico();
-			andar (T1, mp1, movimentoRandomico, Selvagem, PokeDoTreinador[i]);
-			mp1.imprimemapa(T1);
-			System.out.println("-----------------------------------------------------------");
-			if (PokeDoTreinador[i].getHPPokemon()<=0)
-				i++; //o contador aumenta com a morte do pokemon
-		}
+		
+		batalha (T1, mp1, Selvagem, PokeDoTreinador);
+		batalha (T2, mp2, Selvagem, PokeDoTreinador2);
+	
+			
+	
 /*
  
  :::,
@@ -246,6 +262,16 @@ public class PassearPeloMapa {
             '':---''_)      '-'-'
                '-'-'  PIKACHU!  
   
+  
+  	int i=0, movimentoRandomico=0;
+		while (i<6) {  6 é o numero maximo de pokemons do treinador
+			movimentoRandomico=gerarMovimentoRandomico();
+			andar (T1, mp1, movimentoRandomico, Selvagem, PokeDoTreinador[i]);
+			mp1.imprimemapa(T1);
+			System.out.println("-----------------------------------------------------------");
+			if (PokeDoTreinador[i].getHPPokemon()<=0)
+				i++; //o contador aumenta com a morte do pokemon
+		}
  */
 
 	}

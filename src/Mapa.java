@@ -19,7 +19,7 @@ public class Mapa {
 		return mapa[x][y]; //metodo para avaliar em passearpelomapa se na posicao temos chao ou grama
 	}
 	
-	public int gerarMapa() {
+	public int gerarMapa() { //gera 0 ou 1, sendo GRASS (1) e FLOOR (0) de forma randômica
 		int max=1;
 	    int min=0;
 	    int diff=max-min;
@@ -29,7 +29,7 @@ public class Mapa {
 	    return i;
 	}
 	
-	public void imprimemapa(Treinador T) {
+	public void imprimemapa(Treinador T) { //imprime mapa com FLOOR ou GRASS ou X (posição atual do treinador)
 		int i;
 		int j;
 		for ( i=0; i<10; i++) {
@@ -44,12 +44,12 @@ public class Mapa {
 			}
 			System.out.println();
 		}
-		System.out.println();
+		System.out.println();   //pulou-se essas linhas para as impressões ficarem visualmente melhores
 		System.out.println();
 		System.out.println();
 	}
 	
-	public int gerarSelvagemRandomico() {
+	public int gerarSelvagemRandomico() {  //gera numero entre 0 e 100 para se definir qual pokemón irá aparecer no mapa
 		int max=100;
 	    int min=0;
 	    int diff=max-min;
@@ -59,13 +59,12 @@ public class Mapa {
 	    return i;
 	}
 	
-	//Pikachu P1 = new Pikachu ();
 	public int selvagemAparece(Treinador T) {
-		//se no mapa for 1 (grama), gera um numero randomico que eh usado na passear pelo mapa para colocar um pokemon selvagem aleatorio no mapa
+		//se no mapa for 1 (grama), gera um número randômico que é usado na passear pelo mapa para colocar um pokemon selvagem aleatório no mapa
 		if (mapa[T.getPosicaoXatual()][T.getPosicaoYatual()] == 1) {
 			return gerarSelvagemRandomico();
 		}
-		else return -1;
+		else return -1; // convenção caso o pokemon selvagem não aparecer
 	}
 	
 }
