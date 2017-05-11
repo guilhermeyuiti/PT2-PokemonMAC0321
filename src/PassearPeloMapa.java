@@ -38,9 +38,10 @@ public class PassearPeloMapa {
 	public static void batalha(Treinador A, Pokemon PA, Pokemon Selvagem, int i, int j){ // i e j guardam a posicao do pokemon atual
 		int numerodoataque=gerarAtaqueRandomico();
 		int variaveldeacao =gerarAcaoRandomico();
+		boolean x=A.capturaPokemon(Selvagem);
 		//se pokemon esta vivo e treinador nao fugiu e selvagem nao fugiu, ataque DO TREINADOR
 		if (PA.vivoOuMorto() == true && A.getContinuaBatalha()==true){			
-			if (variaveldeacao>=1 && variaveldeacao<=59){
+			if (variaveldeacao>=1 && variaveldeacao<=59 && x==false){
 				System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
 				System.out.println("O treinador irá usar "+PA.imprimeAtaque(numerodoataque));
 				System.out.println();
@@ -53,12 +54,12 @@ public class PassearPeloMapa {
 			}
 				
 				
-			if (variaveldeacao>=60 && variaveldeacao<=90 ) {
+			if (variaveldeacao>=60 && variaveldeacao<=90 && x==false) {
 				A.setContinuaBatalha(false); //O TREINADOR FOGE DA BATALHA
 			}
 			
 				
-			if (variaveldeacao>=91 && variaveldeacao<=100) {
+			if (variaveldeacao>=91 && variaveldeacao<=100 && x==false) {
 				//nao se pode usar item se o pokemon ja morreu ou se seu HP vai exceder o maximo, caso isso ocorra vai para ATAQUE DO TREINADOR
 				if (A.usaritem(PA)==false) {
 					System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
@@ -70,13 +71,15 @@ public class PassearPeloMapa {
 				}
 				
 			}
-			A.capturaPokemon(Selvagem);
+			if (x==true) {
+				Selvagem.setContinuaBatalha(false);
+			}
 		}
 		System.out.println();
 		variaveldeacao =gerarAcaoRandomico();  //variaveldeacao recebe outro número para definir ação diferente da anterior
 		numerodoataque=gerarAtaqueRandomico();  //numerodoataque recebe outro número para definir ataque diferente do anterior
 		//se pokemon esta vivo e treinador nao fugiu e selvagem nao fugiu, ataque DO SELVAGEM
-		if (Selvagem.vivoOuMorto() == true && A.getContinuaBatalha()==true){
+		if (Selvagem.vivoOuMorto() == true && A.getContinuaBatalha()==true && x==false){
 			if(variaveldeacao>=1 && variaveldeacao<=89){
 				System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" irá atacar!");
 				System.out.println("O pokemon irá usar "+Selvagem.imprimeAtaque(numerodoataque));
@@ -86,24 +89,28 @@ public class PassearPeloMapa {
 					System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" venceu a batalha!!");
 				}
 			}
-			if (variaveldeacao>=90 && variaveldeacao<=100) {
+			if (variaveldeacao>=90 && variaveldeacao<=100 && x==false) {
 				Selvagem.setContinuaBatalha(false); //O POKEMON SELVAGEM FOGE DA BATALHA
 			}
 		}
 		System.out.println();
 		
-		if (A.getContinuaBatalha()==false) {  //treinador foge e pokemón selvagem vence a batalha
+		if (A.getContinuaBatalha()==false && Selvagem.getContinuaBatalha()==true && x==false) {  //treinador foge e pokemón selvagem vence a batalha
 			System.out.println("O treinador "+A.getNomeTreinador()+" fugiu!");
 			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" venceu a batalha!!");
 			System.out.println();
 		}
 		//POKEMON SELVAGEM FOGE
-		if (Selvagem.getContinuaBatalha()==false) { //pokemón selvagem foge e treinador vence a batalha
+		if (Selvagem.getContinuaBatalha()==false && x==false) { //pokemón selvagem foge e treinador vence a batalha
 			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" fugiu!");
 			System.out.println("O treinador "+A.getNomeTreinador()+" venceu a batalha!!");
 			System.out.println();
 		}
-		
+		if (x==true) {
+			System.out.println("O treinador "+A.getNomeTreinador()+" venceu a batalha!!");
+			System.out.println();
+		}
+		x=true;
 	}
 	
 
