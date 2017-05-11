@@ -2,6 +2,8 @@ import java.util.Random;
 
 public class PassearPeloMapa {
 	
+	/*criou-se metodos para gerar numeros randomicos para que a selecao de movimentos e acoes nao fosse fixa e houvesse uma probabilidade de 
+	ocorrerem */
 	public static int gerarAtaqueRandomico() {
 		int max=4;
 	    int min=1;
@@ -46,6 +48,7 @@ public class PassearPeloMapa {
 				System.out.println("O treinador irá usar "+PA.imprimeAtaque(numerodoataque));
 				System.out.println();
 				PA.pokemonAtaca(numerodoataque, Selvagem); 
+				
 				//dps de cada ataque devemos checar se o pokemon que recebeu o ataque nao morreu
 				if (Selvagem.vivoOuMorto()==false) {
 					//System.out.println("if 2 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
@@ -61,6 +64,7 @@ public class PassearPeloMapa {
 			
 				
 			if (variaveldeacao>=91 && variaveldeacao<=100) {
+				//nao se pode usar item se o pokemon ja morreu ou se seu HP vai exceder o maximo, caso isso ocorra vai para ATAQUE DO TREINADOR
 				if (A.usaritem(PA)==false) {
 					//System.out.println("if 4 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 					System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
@@ -99,7 +103,7 @@ public class PassearPeloMapa {
 		
 		if (A.getContinuaBatalha()==false) {
 			System.out.println("O treinador "+A.getNomeTreinador()+" fugiu!");
-			System.out.println("O treinador "+Selvagem.getNomePokemon()+" venceu a batalha!!");
+			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" venceu a batalha!!");
 			System.out.println();
 		}
 		//POKEMON SELVAGEM FOGE
@@ -129,7 +133,10 @@ public class PassearPeloMapa {
 	public static void andar(Treinador T, Mapa mp, int acao, Pokemon Selvagem[], Pokemon P) {
 		int variavelDoSelvagem = mp.selvagemAparece(T);
 		boolean tCima=false, tBaixo=false, tEsquerda=false, tDireita=false;
+		//so pode escolher um pokemon para batalhar se ele tem HP
 		if (P.getHPPokemon()>0) {
+			
+			// cada numero foi associado a uma direcao e assim chama-se os metodos que foram definidos na classe treinador
 			if (acao==1) {  //CIMA 
 				tCima=T.cima();
 			}
@@ -145,6 +152,7 @@ public class PassearPeloMapa {
 				tDireita=T.direita();
 			}
 			
+			
 			if (acao!=1 && acao!=2 && acao!=3 && acao!=4) {  //ACAO INVALIDA
 				System.out.println("Essa ação não é valida!");
 			}
@@ -152,7 +160,8 @@ public class PassearPeloMapa {
 			
 			
 			if ((acao==1 && tCima==true) || (acao==2 && tBaixo==true) || (acao==3 && tEsquerda==true) || (acao==4 && tDireita==true)) {
-				if (variavelDoSelvagem>=0 && variavelDoSelvagem<=46 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {   // MUDAR OS INTERVALOS PARA APARECER MENOS POKEMONS
+				//os intervalos indicam a probabilidade de um pokemon aparecer aonde tem grama (definida pelo numero 1)
+				if (variavelDoSelvagem>=0 && variavelDoSelvagem<=46 && mp.getMapa(T.getPosicaoXatual(), T.getPosicaoYatual())==1) {   
 					System.out.println("A wild Pikachu appears");
 					batalhaComSelvagem(T, P, Selvagem[0]);
 				}
@@ -174,6 +183,7 @@ public class PassearPeloMapa {
 	
 	
 	public static void main(String[] args) {
+		//como utilizou-se randomico na geracao do mapa, os objetos mapas serao diferentes, assim mp1 != mp2 
 		Mapa mp1 = new Mapa();
 		Ash T1 = new Ash();
 		Pokemon[] Selvagem = new Pokemon[6];
@@ -201,7 +211,7 @@ public class PassearPeloMapa {
 			mp1.imprimemapa(T1);
 			System.out.println("-----------------------------------------------------------");
 			if (PokeDoTreinador[i].getHPPokemon()<=0)
-				i++;
+				i++; //o contador aumenta com a morte do pokemon
 		}
 /*
  
