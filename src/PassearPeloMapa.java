@@ -39,11 +39,8 @@ public class PassearPeloMapa {
 		int numerodoataque=gerarAtaqueRandomico();
 		int variaveldeacao =gerarAcaoRandomico();
 		//se pokemon esta vivo e treinador nao fugiu e selvagem nao fugiu, ataque DO TREINADOR
-		if (PA.vivoOuMorto() == true && A.getContinuaBatalha()==true){
-			//System.out.println("A VARIAVEL DE ACAO EHHAHSDHSADHSADHSADHSADHADHSAHDSAHD "+variaveldeacao);
-			
+		if (PA.vivoOuMorto() == true && A.getContinuaBatalha()==true){			
 			if (variaveldeacao>=1 && variaveldeacao<=59){
-				//System.out.println("if 1 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 				System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
 				System.out.println("O treinador irá usar "+PA.imprimeAtaque(numerodoataque));
 				System.out.println();
@@ -51,14 +48,12 @@ public class PassearPeloMapa {
 				
 				//dps de cada ataque devemos checar se o pokemon que recebeu o ataque nao morreu
 				if (Selvagem.vivoOuMorto()==false) {
-					//System.out.println("if 2 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 					System.out.println("O pokemon selvagem "+Selvagem.getNomePokemon()+" morreu!");			
 				}
 			}
 				
 				
 			if (variaveldeacao>=60 && variaveldeacao<=90 ) {
-				//System.out.println("if 3 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 				A.setContinuaBatalha(false); //O TREINADOR FOGE DA BATALHA
 			}
 			
@@ -66,7 +61,6 @@ public class PassearPeloMapa {
 			if (variaveldeacao>=91 && variaveldeacao<=100) {
 				//nao se pode usar item se o pokemon ja morreu ou se seu HP vai exceder o maximo, caso isso ocorra vai para ATAQUE DO TREINADOR
 				if (A.usaritem(PA)==false) {
-					//System.out.println("if 4 -- O VALOR DA VARIAVEL DE ACAO EH: "+variaveldeacao);
 					System.out.println("O treinador "+A.getNomeTreinador()+" irá atacar com o pokemón "+PA.getNomePokemon()+"!");
 					System.out.println("O treinador irá usar "+PA.imprimeAtaque(numerodoataque));
 					System.out.println();

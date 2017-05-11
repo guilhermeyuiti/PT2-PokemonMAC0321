@@ -1,3 +1,4 @@
+import java.util.Random;
 
 abstract class Treinador {
 	private String pokemon;  //nome do pokemon do treinador
@@ -85,6 +86,27 @@ abstract class Treinador {
 			System.out.println(treinador+" não pode andar para baixo!");
 			return false;
 		}
+	}
+	
+	public boolean capturaPokemon (Pokemon Selvagem) {  //captura de pokemon utilizando uma pokebola
+		int max=255;
+	    int min=0;
+	    int diff=max-min;		  
+	    Random rn = new Random();
+	    int m = rn.nextInt(diff+1);
+		m+=min;
+		System.out.println("O treinador "+treinador+" usou uma pokebola no pokemón "+Selvagem.getNomePokemon());
+		System.out.println("3, 2, 1...");
+		int f = (Selvagem.getHPmax()*255*4)/(Selvagem.getHPPokemon()*12);   // fórmula obtida no site Bulbapédia
+		if (f>=m) { // se o pokemón foi pego, ele deve ser adicionado aos pokemóns do treinador (com a vida máxima)
+			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" foi capturado!!");
+			Selvagem.SetHP(Selvagem.getHPmax()-Selvagem.getHPPokemon()); //vida máxima ao pokemón selvagem caso ele tenha sido capturado
+			return true;
+		}
+		else {
+			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" não foi capturado!");
+		}
+		return false;
 	}
 
 }
