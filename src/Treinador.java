@@ -2,8 +2,8 @@
 abstract class Treinador {
 	private String pokemon;  //nome do pokemon do treinador
 	private String treinador;  //nome do treinador
-	private boolean continuaBatalha=true;
-	private int posicaoYatual, posicaoXatual;
+	private boolean continuaBatalha=true; //variavel pra indicar fuga ou continuidade do treinador na batalha
+	private int posicaoYatual, posicaoXatual;//variaveis que indicam a localizacao do treinador no mapa
 	public Treinador (String treinador, String pokemon, int X, int Y) {
 		this.treinador=treinador;
 		this.pokemon =pokemon;

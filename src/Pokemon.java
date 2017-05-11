@@ -30,12 +30,12 @@ abstract class Pokemon {
 		}
 		
 		public boolean getContinuaBatalha() {
-			return continuaBatalha;
+			return continuaBatalha; //se retornar false indica que o pokemon foge
 		}
 		
 		public boolean setContinuaBatalha(boolean a) {
-			return continuaBatalha=a;
-		}
+			return continuaBatalha=a; //na classe passearpelomapa o metodo eh chamado para alterar pra true novamente dps que houve fuga 
+		}                             //tb altera pra false quando eh para o pokemon fugir
 		
 		public String getNomePokemon(){
 			return nome;
@@ -48,12 +48,12 @@ abstract class Pokemon {
 		public int getHPmax(){
 			return HPmax;
 		}
-		//metodo para adicionar ou retirar HP de acordo com a batalha
+		//metodo para adicionar ou retirar HP de acordo com a batalha, entra-se com o dano ou cura (int HP)
 		public int SetHP(int HP){
 			this.HP = this.HP + HP;
 			return this.HP; 
 		}
-		//metodo para imprimir os ataques
+		//metodo para permitir a impressao dos ataques em passearpelomapa
 		public String imprimeAtaque(int num){
 			if (num == 1) return ataque[0];
 			if (num == 2) return ataque[1];
@@ -90,7 +90,7 @@ abstract class Pokemon {
 			}
 		}
 		
-		//FUNCAO PRA CHECAR SE ESTA VIVO
+		//FUNCAO PRA CHECAR SE POKEMON ESTA VIVO
 		public boolean vivoOuMorto(){
 			if (HP>0){
 				return true;

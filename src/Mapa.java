@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Mapa {
-	
+	//cria-se um mapa de forma randomica com 1s e 0s ao chamar o metodo gerarMapa
 	private int mapa[][]= {
 			{gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa()},
 			{gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa(), gerarMapa()},
@@ -16,7 +16,7 @@ public class Mapa {
             };
 
 	public int getMapa(int x, int y){
-		return mapa[x][y];
+		return mapa[x][y]; //metodo para avaliar em passearpelomapa se na posicao temos chao ou grama
 	}
 	
 	public int gerarMapa() {
@@ -61,6 +61,7 @@ public class Mapa {
 	
 	//Pikachu P1 = new Pikachu ();
 	public int selvagemAparece(Treinador T) {
+		//se no mapa for 1 (grama), gera um numero randomico que eh usado na passear pelo mapa para colocar um pokemon selvagem aleatorio no mapa
 		if (mapa[T.getPosicaoXatual()][T.getPosicaoYatual()] == 1) {
 			return gerarSelvagemRandomico();
 		}
