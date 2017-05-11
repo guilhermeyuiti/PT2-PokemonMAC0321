@@ -221,9 +221,7 @@ public class PassearPeloMapa {
 		
 		batalha (T1, mp1, Selvagem, PokeDoTreinador);
 		batalha (T2, mp2, Selvagem, PokeDoTreinador2);
-	
-			
-	
+
 /*
  
  :::,
@@ -257,16 +255,6 @@ public class PassearPeloMapa {
             '':---''_)      '-'-'
                '-'-'  PIKACHU!  
   
-  
-  	int i=0, movimentoRandomico=0;
-		while (i<6) {  6 é o numero maximo de pokemons do treinador
-			movimentoRandomico=gerarMovimentoRandomico();
-			andar (T1, mp1, movimentoRandomico, Selvagem, PokeDoTreinador[i]);
-			mp1.imprimemapa(T1);
-			System.out.println("-----------------------------------------------------------");
-			if (PokeDoTreinador[i].getHPPokemon()<=0)
-				i++; //o contador aumenta com a morte do pokemon
-		}
  */
 
 	}
