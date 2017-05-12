@@ -11,6 +11,7 @@ abstract class Treinador {
 		posicaoXatual=X;
 		posicaoYatual=Y;
 	}
+	private static int i=6;
 	
 	public boolean getContinuaBatalha() {
 		return continuaBatalha;
@@ -37,7 +38,7 @@ abstract class Treinador {
 	public int getPosicaoYatual(){
 		return posicaoYatual;
 	}
-	
+
 	//METODOS PARA ANDAR
 	public boolean direita(){
 		if(posicaoYatual<9) {
@@ -88,7 +89,7 @@ abstract class Treinador {
 		}
 	}
 	
-	public boolean capturaPokemon (Pokemon Selvagem) {  //captura de pokemon utilizando uma pokebola
+	public boolean capturaPokemon (Pokemon Selvagem, Pokemon[] PokeDoTreinador) {  //captura de pokemon utilizando uma pokebola
 		int max=255;
 	    int min=0;
 	    int diff=max-min;		  
@@ -98,9 +99,10 @@ abstract class Treinador {
 		System.out.println("O treinador "+treinador+" usou uma pokebola no pokemón "+Selvagem.getNomePokemon());
 		System.out.println("3, 2, 1...");
 		int f = (Selvagem.getHPmax()*255*4)/(Selvagem.getHPPokemon()*12);   // fórmula obtida no site Bulbapédia
-		if (f>=m) { // se o pokemón foi pego, ele deve ser adicionado aos pokemóns do treinador (com a vida máxima)
+		if (f>=m && i<20) { // se o pokemón foi pego, ele deve ser adicionado aos pokemóns do treinador (com a vida máxima), 20 é o numero maximo de pokemons que o treinador pode ter
 			System.out.println("O pokemón selvagem "+Selvagem.getNomePokemon()+" foi capturado!!");
 			Selvagem.SetHP(Selvagem.getHPmax()-Selvagem.getHPPokemon()); //vida máxima ao pokemón selvagem caso ele tenha sido capturado
+			PokeDoTreinador[i++]= Selvagem;
 			return true;
 		}
 		else {
